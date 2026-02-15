@@ -29,7 +29,7 @@ struct TreeNode* insertIntoBST ( struct TreeNode* root, int val ) {
 void imprimir ( struct TreeNode* root ) {
     if ( root != NULL ) {
         imprimir ( root -> left );
-        printf ( "%d ", root -> val );
+        printf ( "%d", root -> val );
         imprimir ( root -> right );
     }
 }
