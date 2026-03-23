@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Rodar Código C",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            
+            // CORREÇÃO AQUI: Adicionei \\gdb.exe no final
+            "miDebuggerPath": "C:\\MinGW\\bin\\mingw-get.exe",
+            
+            // IMPORTANTE: Certifique-se que no tasks.json o "label" é exatamente "compilar_meu_codigo"
+            "preLaunchTask": "compilar_meu_codigo"
+        }
+    ]
+}
