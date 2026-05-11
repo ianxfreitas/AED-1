@@ -1,25 +1,29 @@
-Agenda pBuffer
+# Agenda pBuffer
 
-Nome: ian xavier freitas
-Turma: M1 AED
+**Nome:** Ian Xavier Freitas  
+**Turma:** M2 AED  
 
-Uma agenda de contatos feita SEM usar variáveis, só ponteiros. Tudo fica guardado em um buffer de memória (pBuffer).
+# Descrição
 
-3 Casos de Teste com Sucesso
+Uma agenda de contatos feita SEM usar variáveis, só ponteiros. Tudo fica guardado em um buffer de memória (void *pBuffer), sem uso de structs. O buffer cresce e encolhe dinamicamente com realloc conforme pessoas são adicionadas e removidas.
 
-1. Adicionar e Listar: Adicionei 3 pessoas e listei todas - funcionou perfeitamente
-2. Buscar por Email: Busquei um email existente e um que não existe - funcionou correto
-3. Remover Pessoa: Removi uma pessoa pelo email e verifiquei que saiu da lista - funcionou
+# 3 Casos de Teste com Sucesso
 
-O que Funciona
+1. **Adicionar e Listar:** Adicionei 3 pessoas com nomes e emails diferentes e listei todas 
+2. **Buscar por Email:** Busquei um email existente e um que não existe — retornou corretamente em ambos os casos
+3. **Remover Pessoa:** Removi uma pessoa pelo email, listei novamente e confirmei que saiu da lista — funcionou corretamente
 
-- Adicionar pessoas
+# O que Funciona
+
+- Adicionar pessoas com nome, email e idade
+- Validação de email duplicado ao adicionar
+- Validação de idade (rejeita texto no campo de idade)
 - Remover pessoas por email
 - Buscar pessoas por email
 - Listar todas as pessoas
-- Sem vazamento de memória (testado com DrMemory)
+- Sem vazamento de memória (testado com Valgrind)
 
-O que Não Funciona
+# O que Não Funciona
 
-- Não valida emails duplicados
-- Não salva em arquivo (perde os dados ao sair)
+- Não salva os dados em arquivo (perde tudo ao fechar o programa)
+- Não valida se o nome está vazio

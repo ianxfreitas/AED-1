@@ -188,12 +188,13 @@ void DeletePerson( void** ppBuffer ) {
 		if( strcmp( email, tempEmail ) == 0 ) {
 			printf( "\nPessoa encontrada e removida.\n" );
 
-			size_t peopleSize = sizeof( int ) + strlen( name ) + 1 + strlen( email ) + 1;
+			size_t* peopleSize = ( size_t* )( ( char* )*ppBuffer + sizeof( int ) * 2 + sizeof( size_t ) + NAME_MAX );
+			*peopleSize		   = sizeof( int ) + strlen( name ) + 1 + strlen( email ) + 1;
 
 			memmove( people, next, ( char* )listEnd - ( char* )next );
 
 			( *count )--;
-			*peopleDataSize -= peopleSize;
+			*peopleDataSize -= *peopleSize;
 
 			*ppBuffer = realloc( *ppBuffer, AREA_FIXA + *peopleDataSize );
 			if( !( *ppBuffer ) && *peopleDataSize > 0 ) {
