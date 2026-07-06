@@ -8,20 +8,20 @@
 // Buffer: count | option | peopleDataSize | tempName | tempAge | tempEmail | people...
 #define AREA_FIXA ( sizeof( int ) * 2 + sizeof( size_t ) + NAME_MAX + sizeof( int ) + EMAIL_MAX )
 
-void AddPerson( void** ppBuffer );
-void DeletePerson( void** ppBuffer );
-void ListPeople( void* pBuffer );
-void PrintPerson( void* pBuffer );
+void AddPerson( void** ppBuffer ); // ponteiro pra ponteiro porque o realloc pode mudar o endereço do buffer. com ponteiro normal o main nao saberia o novo endereço
+void DeletePerson( void** ppBuffer );// ponteiro pra ponteiro porque o realloc pode mudar o endereço do buffer. com ponteiro normal o main nao saberia o novo endereço
+void ListPeople( void* pBuffer ); // ponteiro simples, pois nao vai fazer realloc no buffer
+void PrintPerson( void* pBuffer ); // ponteiro simples, pois nao vai fazer realloc no buffer
 
 int main() {
 
-	void* pBuffer = malloc( AREA_FIXA );
+	void* pBuffer = malloc( AREA_FIXA ); // aloca apenas a areaFixa, pois é o espaço minimo. Nenhum pessoa foi cadastrada ainda, entao nao precisa de mais espaço
 	if( !pBuffer ) {
 		printf( "Erro ao alocar memória!\n" );
 		return 1;
 	}
 
-	int* count = ( int* )pBuffer;
+	int* count = ( int* )pBuffer; 
 	*count	   = 0;
 
 	int* option = ( int* )( ( char* )pBuffer + sizeof( int ) );
